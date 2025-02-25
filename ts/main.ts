@@ -1,15 +1,10 @@
-const $photoURL = document.querySelector('img');
+// create an interface for the data object //
 
-if (!$photoURL) throw new Error('$photoURL query failed');
+const $input = document.querySelector('input');
 
-function handlePhotoUrl(event: Event): void {
-  const $photoURL = document.querySelector('img');
-  if (!$photoURL) {
-    throw new Error('$photoURL does not exist');
-  }
-  console.log('photo inserted');
-  console.log('event', event);
-  console.log('event.target', event.target);
-}
+if (!$input) throw new Error('$input query failed');
 
-$photoURL.addEventListener('change', handlePhotoUrl);
+$input.addEventListener('input', (event: Event) => {
+  const $eventTarget = event.target as HTMLInputElement;
+  console.log('Input value changed to:' + $eventTarget.value);
+});

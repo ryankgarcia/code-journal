@@ -32,20 +32,21 @@
           <div class="row">
             <div class="column-half">
               <img
+                id="photo"
                 src="/images/placeholder-image-square.jpg"
                 alt="picture placeholder" />
             </div>
             <div class="column-half">
               <label for="title">Title</label>
               <input id="title" required />
-              <label for="photo">Photo URL</label>
-              <input type="url" id="photo" required />
+              <label for="photoURL">Photo URL</label>
+              <input type="url" id="photoURL" required />
             </div>
           </div>
           <div class="row">
             <div class="column-full">
               <label>Notes</label>
-              <textarea name="textarea" rows="10"></textarea>
+              <textarea name="textarea" rows="10" required></textarea>
             </div>
           </div>
           <button type="submit">Save</button>
