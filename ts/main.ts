@@ -56,3 +56,5 @@ $form.addEventListener('submit', (event: Event): void => {
   $form.reset();
   $photoId.src = '/images/placeholder-image-square.jpg';
 });
+
+// function renderEntry(entry: Entry)
