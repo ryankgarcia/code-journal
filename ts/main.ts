@@ -57,4 +57,32 @@ $form.addEventListener('submit', (event: Event): void => {
   $photoId.src = '/images/placeholder-image-square.jpg';
 });
 
-// function renderEntry(entry: Entry)
+// the purpose of the renderEntry function is to generate and return a DOM
+// tree for a single entry that matches the entries made in the UL
+
+function renderEntry(entry: Entry): HTMLLIElement {
+  const $liRow = document.createElement('li');
+  $liRow.setAttribute('class', 'row');
+
+  const $divColHalf = document.createElement('div');
+  $divColHalf.setAttribute('class', 'column-half');
+
+  const $image = document.createAttribute('img');
+  $image.setAttribute('src', entry.photoUrl);
+
+  const $textDiv = document.createAttribute('div');
+  $textDiv.setAttribute('class', 'column-half');
+
+  const $pStrong = document.createElement('p');
+  $pStrong.textContent('p', ' ');
+
+  const $pDescription = document.createElement('p');
+  $pDescription.setAttribute('p');
+
+  $liRow.appendChild($divColHalf);
+  $divColHalf.appendChild($image);
+  $textDiv.appendChild($pStrong);
+  $textDiv.appendChild($pDescription);
+
+  return $liRow;
+}
