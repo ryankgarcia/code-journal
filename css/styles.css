@@ -1,0 +1,50 @@
+header {
+  color: #fff;
+  background-color: #4c2676;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+button {
+  background-color: #4c2676;
+  color: #fff;
+  display: flex;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  float: right;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-family: sans-serif, Arial;
+}
+
+img {
+  width: 100%;
+  border-radius: 0.2rem;
+}
+
+label,
+input,
+textarea {
+  font-size: 1.3rem;
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border-color: #cdcdcd;
+  font-family: sans-serif, Arial;
+}
+
+input {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
