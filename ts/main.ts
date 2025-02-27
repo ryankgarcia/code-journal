@@ -67,17 +67,17 @@ function renderEntry(entry: Entry): HTMLLIElement {
   const $divColHalf = document.createElement('div');
   $divColHalf.setAttribute('class', 'column-half');
 
-  const $image = document.createAttribute('img');
+  const $image = document.createElement('img');
   $image.setAttribute('src', entry.photoUrl);
 
-  const $textDiv = document.createAttribute('div');
+  const $textDiv = document.createElement('div');
   $textDiv.setAttribute('class', 'column-half');
 
   const $pStrong = document.createElement('p');
-  $pStrong.textContent('p', ' ');
+  $pStrong.textContent = entry.title;
 
   const $pDescription = document.createElement('p');
-  $pDescription.setAttribute('p');
+  $pDescription.textContent = entry.notes;
 
   $liRow.appendChild($divColHalf);
   $divColHalf.appendChild($image);
