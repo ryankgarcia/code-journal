@@ -16,8 +16,8 @@ const $photoURL = document.querySelector('#photoURL');
 
 if (!$photoURL) throw new Error('$photoURL query failed');
 
-// the function is looking to see when the event that a user pastes in a
-// new url in the URL, and updates it based on the link that is pasted
+// the function handlePhotoUrl is listening when the event that a user pastes in a
+// new url in the URL, and updates the image placeholder based on the link that is pasted
 
 function handlePhotoUrl(event: Event): void {
   const $eventTarget = event.target as HTMLInputElement;
@@ -26,13 +26,13 @@ function handlePhotoUrl(event: Event): void {
 
 $photoURL.addEventListener('input', handlePhotoUrl);
 
-// the code below this queries the form on the DOM, if its not found, throw new Error
+// the code below: queries the form on the DOM, if its not found, throw new Error
 
 const $form = document.querySelector('form');
 
 if (!$form) throw new Error('$form query failed');
 
-// this code below is an event listener callback function that checks the dom each
+// this code below: is an event listener callback function that checks the dom each
 // time a form is submitted, and adds a new entry to local storage
 // with each new entry that is added
 
@@ -58,7 +58,7 @@ $form.addEventListener('submit', (event: Event): void => {
 });
 
 // the purpose of the renderEntry function is to generate and return a DOM
-// tree for a single entry that matches the entries made in the UL
+// tree for a single entry that matches the entries made in the <ul>
 
 function renderEntry(entry: Entry): HTMLLIElement {
   const $liRow = document.createElement('li');
@@ -87,6 +87,12 @@ function renderEntry(entry: Entry): HTMLLIElement {
 
   return $liRow;
 }
+
+// the code below: explains there is a query for a <ul> element on the dom
+// and on the DOM, adds an event listener checking for DOMContentLoaded
+// there is a loop iterating through the length of the data.entries object
+// and appending the entries made to the <ul> element
+
 const $ul = document.querySelector('ul');
 if (!$ul) throw new Error('$ul query failed');
 
@@ -96,3 +102,5 @@ document.addEventListener('DOMContentLoaded', (): void => {
     $ul.appendChild($li);
   }
 });
+
+// function toggleNoEntries()
