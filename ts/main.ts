@@ -81,8 +81,18 @@ function renderEntry(entry: Entry): HTMLLIElement {
 
   $liRow.appendChild($divColHalf);
   $divColHalf.appendChild($image);
+  $liRow.appendChild($textDiv);
   $textDiv.appendChild($pStrong);
   $textDiv.appendChild($pDescription);
 
   return $liRow;
 }
+const $ul = document.querySelector('ul');
+if (!$ul) throw new Error('$ul query failed');
+
+document.addEventListener('DOMContentLoaded', (): void => {
+  for (let i = 0; i < data.entries.length; i++) {
+    const $li = renderEntry(data.entries[i]);
+    $ul.appendChild($li);
+  }
+});
