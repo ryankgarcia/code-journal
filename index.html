@@ -22,17 +22,18 @@
           <div class="column-full">
             <h1>Code Journal</h1>
           </div>
+          <a id="entry-header">Entries</a>
         </div>
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" id="formId">
         <h2>New Entry</h2>
         <form>
           <div class="row">
             <div class="column-half">
               <img
-                class="photo"
+                id="photo"
                 src="/images/placeholder-image-square.jpg"
                 alt="picture placeholder" />
             </div>
@@ -52,14 +53,15 @@
           <button type="submit">Save</button>
         </form>
       </div>
-      <!-- <div data-view="entries" class="hidden"></div> -->
-      <div data-view="entries">
-        <div class="container">
+      <div data-view="entries" class="hiddenw" id="entryId">
+        <div class="column-full entries-header">
           <h2>Entries</h2>
-          <div class="row">
-            <p>No entries exist</p>
-            <ul></ul>
-          </div>
+          <a id="new-entry-button">NEW</a>
+        </div>
+
+        <div class="row">
+          <p class="no-entries">No entries exist</p>
+          <ul></ul>
         </div>
       </div>
     </main>

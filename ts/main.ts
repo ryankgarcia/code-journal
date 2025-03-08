@@ -103,4 +103,48 @@ document.addEventListener('DOMContentLoaded', (): void => {
   }
 });
 
-// function toggleNoEntries()
+const $noEntries = document.querySelector('.no-entries');
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function toggleNoEntries(): void {
+  if (!$noEntries) throw new Error('$noEntries query failed');
+
+  if (data.entries.length) {
+    $noEntries.classList.add('hidden');
+  } else {
+    $noEntries.classList.remove('hidden');
+  }
+}
+
+const $formIdElement = document.getElementById('formId');
+const $entryIdElement = document.getElementById('entryId');
+const $entryHeader = document.getElementById('entry-header');
+const $newEntryButton = document.getElementById('new-entry-button');
+
+function viewSwap(viewName: 'entries' | 'entry-form'): void {
+  if (!$formIdElement || !$entryIdElement)
+    throw new Error('$formId or $entryId is null');
+
+  if (viewName === 'entries') {
+    $entryIdElement?.classList.remove('hidden');
+    $formIdElement?.classList.add('hidden');
+  } else if (viewName === 'entry-form') {
+    $entryIdElement?.classList.add('hidden');
+    $formIdElement?.classList.remove('hidden');
+  }
+  if (data.view !== viewName) {
+    data.view = viewName;
+  }
+}
+
+if (!$entryHeader) throw new Error('$entryHeader query failed');
+
+$entryHeader.addEventListener('click', (): void => {
+  viewSwap('entries');
+});
+
+if (!$newEntryButton) throw new Error('$newEntryButton query failed');
+
+$newEntryButton.addEventListener('click', (): void => {
+  viewSwap('entry-form');
+});

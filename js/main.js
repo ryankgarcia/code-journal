@@ -65,4 +65,38 @@ document.addEventListener('DOMContentLoaded', () => {
     $ul.appendChild($li);
   }
 });
-// function toggleNoEntries()
+const $noEntries = document.querySelector('.no-entries');
+function toggleNoEntries() {
+  if (!$noEntries) throw new Error('$noEntries query failed');
+  if (data.entries.length) {
+    $noEntries.classList.add('hidden');
+  } else {
+    $noEntries.classList.remove('hidden');
+  }
+}
+const $formIdElement = document.getElementById('formId');
+const $entryIdElement = document.getElementById('entryId');
+const $entryHeader = document.getElementById('entry-header');
+const $newEntryButton = document.getElementById('new-entry-button');
+function viewSwap(viewName) {
+  if (!$formIdElement || !$entryIdElement)
+    throw new Error('$formId or $entryId is null');
+  if (viewName === 'entries') {
+    $entryIdElement?.classList.remove('hidden');
+    $formIdElement?.classList.add('hidden');
+  } else if (viewName === 'entry-form') {
+    $entryIdElement?.classList.add('hidden');
+    $formIdElement?.classList.remove('hidden');
+  }
+  if (data.view !== viewName) {
+    data.view = viewName;
+  }
+}
+if (!$entryHeader) throw new Error('$entryHeader query failed');
+$entryHeader.addEventListener('click', () => {
+  viewSwap('entries');
+});
+if (!$newEntryButton) throw new Error('$newEntryButton query failed');
+$newEntryButton.addEventListener('click', () => {
+  viewSwap('entry-form');
+});

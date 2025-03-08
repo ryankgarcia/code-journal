@@ -10,7 +10,8 @@ h2 {
   padding: 1rem;
 }
 
-button {
+button,
+#new-entry-button {
   background-color: #4c2676;
   color: #fff;
   display: flex;
@@ -21,6 +22,12 @@ button {
   text-transform: uppercase;
   font-size: 1.3rem;
   font-family: sans-serif, Arial;
+}
+
+.entries-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 img {
