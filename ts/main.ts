@@ -10,8 +10,11 @@ interface FormElements extends HTMLFormControlsCollection {
   photoURL: HTMLInputElement;
   textarea: HTMLTextAreaElement;
 }
+
+// this variable queries the DOM for an IMG element, selecting it by its ID attribute
 const $photoId = document.getElementById('photo') as HTMLImageElement;
 
+// this variable is associated with an input DOM element selecting it by its ID attribute
 const $photoURL = document.querySelector('#photoURL');
 
 if (!$photoURL) throw new Error('$photoURL query failed');
@@ -27,7 +30,6 @@ function handlePhotoUrl(event: Event): void {
 $photoURL.addEventListener('input', handlePhotoUrl);
 
 // the code below: queries the form on the DOM, if its not found, throw new Error
-
 const $form = document.querySelector('form');
 
 if (!$form) throw new Error('$form query failed');
@@ -54,6 +56,10 @@ $form.addEventListener('submit', (event: Event): void => {
   data.entries.unshift(newEntry);
   writeData();
   $form.reset();
+  renderEntry(newEntry);
+  // document.body.prepend(renderEntry(newEntry), $ul);
+  // viewSwap('entries');
+  // if (toggleNoEntries())
   $photoId.src = '/images/placeholder-image-square.jpg';
 });
 
@@ -105,7 +111,6 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
 const $noEntries = document.querySelector('.no-entries');
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function toggleNoEntries(): void {
   if (!$noEntries) throw new Error('$noEntries query failed');
 
@@ -116,10 +121,17 @@ function toggleNoEntries(): void {
   }
 }
 
+// the variables below are querying the DOM for specific id elements
+// they are associated to the elements i want to manipulate to make the dynamic
+// changes to the website
+
 const $formIdElement = document.getElementById('formId');
 const $entryIdElement = document.getElementById('entryId');
 const $entryHeader = document.getElementById('entry-header');
 const $newEntryButton = document.getElementById('new-entry-button');
+
+// this function was created to dynamically change the view of what the user
+// experiences when they click on the entries header OR the button labeled 'new'
 
 function viewSwap(viewName: 'entries' | 'entry-form'): void {
   if (!$formIdElement || !$entryIdElement)
@@ -139,11 +151,17 @@ function viewSwap(viewName: 'entries' | 'entry-form'): void {
 
 if (!$entryHeader) throw new Error('$entryHeader query failed');
 
+// this event listener listens for a user click in order to swap the view
+// they see on the page, dynamically. this one is associated with the entries they have made
+
 $entryHeader.addEventListener('click', (): void => {
   viewSwap('entries');
 });
 
 if (!$newEntryButton) throw new Error('$newEntryButton query failed');
+
+// this event listener listens for a user click to swap the view so the user
+// see's the entry form to create a new entry
 
 $newEntryButton.addEventListener('click', (): void => {
   viewSwap('entry-form');
