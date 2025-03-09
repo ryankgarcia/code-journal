@@ -17,6 +17,19 @@ const $photoId = document.getElementById('photo') as HTMLImageElement;
 // this variable is associated with an input DOM element selecting it by its ID attribute
 const $photoURL = document.querySelector('#photoURL');
 
+// the variables below are querying the DOM for specific id elements.
+// they are associated to the elements i want to manipulate to make dynamic
+// changes to the website
+// in no particular order, these variables are DOM query selecting or getting element by ID
+const $ul = document.querySelector('ul');
+const $formIdElement = document.getElementById('formId');
+const $entryIdElement = document.getElementById('entryId');
+const $entryHeader = document.getElementById('entry-header');
+const $newEntryButton = document.getElementById('new-entry-button');
+const $noEntries = document.querySelector('.no-entries');
+// the code below: queries the form on the DOM, if its not found, throw new Error
+const $form = document.querySelector('form');
+
 if (!$photoURL) throw new Error('$photoURL query failed');
 
 // the function handlePhotoUrl is listening when the event that a user pastes in a
@@ -29,14 +42,13 @@ function handlePhotoUrl(event: Event): void {
 
 $photoURL.addEventListener('input', handlePhotoUrl);
 
-// the code below: queries the form on the DOM, if its not found, throw new Error
-const $form = document.querySelector('form');
-
 if (!$form) throw new Error('$form query failed');
 
 // this code below: is an event listener callback function that checks the dom each
 // time a form is submitted, and adds a new entry to local storage
 // with each new entry that is added
+
+if (!$ul) throw new Error('$ul query failed');
 
 $form.addEventListener('submit', (event: Event): void => {
   event.preventDefault();
@@ -56,10 +68,11 @@ $form.addEventListener('submit', (event: Event): void => {
   data.entries.unshift(newEntry);
   writeData();
   $form.reset();
-  renderEntry(newEntry);
-  // document.body.prepend(renderEntry(newEntry), $ul);
-  // viewSwap('entries');
-  // if (toggleNoEntries())
+  $ul.prepend(renderEntry(newEntry));
+  viewSwap('entries');
+  if ($noEntries) {
+    toggleNoEntries();
+  }
   $photoId.src = '/images/placeholder-image-square.jpg';
 });
 
@@ -99,9 +112,6 @@ function renderEntry(entry: Entry): HTMLLIElement {
 // there is a loop iterating through the length of the data.entries object
 // and appending the entries made to the <ul> element
 
-const $ul = document.querySelector('ul');
-if (!$ul) throw new Error('$ul query failed');
-
 document.addEventListener('DOMContentLoaded', (): void => {
   for (let i = 0; i < data.entries.length; i++) {
     const $li = renderEntry(data.entries[i]);
@@ -109,8 +119,8 @@ document.addEventListener('DOMContentLoaded', (): void => {
   }
 });
 
-const $noEntries = document.querySelector('.no-entries');
-
+// this function toggles the no entries text if there are no entries,
+// if there are entries, the 'no entries' text will disappear
 function toggleNoEntries(): void {
   if (!$noEntries) throw new Error('$noEntries query failed');
 
@@ -120,15 +130,6 @@ function toggleNoEntries(): void {
     $noEntries.classList.remove('hidden');
   }
 }
-
-// the variables below are querying the DOM for specific id elements
-// they are associated to the elements i want to manipulate to make the dynamic
-// changes to the website
-
-const $formIdElement = document.getElementById('formId');
-const $entryIdElement = document.getElementById('entryId');
-const $entryHeader = document.getElementById('entry-header');
-const $newEntryButton = document.getElementById('new-entry-button');
 
 // this function was created to dynamically change the view of what the user
 // experiences when they click on the entries header OR the button labeled 'new'
