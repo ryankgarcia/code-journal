@@ -1,6 +1,6 @@
 interface Data {
   view: string;
-  entries: [];
+  entries: Entry[];
   editing: null;
   nextEntryId: number;
 }
